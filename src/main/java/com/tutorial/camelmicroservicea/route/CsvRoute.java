@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
-@Component
+//@Component
 public class CsvRoute extends RouteBuilder {
     private final Logger LOGGER = LoggerFactory.getLogger(CsvRoute.class);
 
@@ -18,7 +18,7 @@ public class CsvRoute extends RouteBuilder {
                 .unmarshal(new BindyCsvDataFormat(User.class))
                 .process(exchange -> {
                     List<User> users = exchange.getIn().getBody(List.class);
-                    users.forEach(user -> LOGGER.info("This is each user data: {}", user));
+                    users.forEach(user -> LOGGER.info("This is each user data: {}", user.getUsername()));
                 });
     }
 }
